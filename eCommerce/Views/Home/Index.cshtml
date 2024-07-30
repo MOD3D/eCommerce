@@ -1,0 +1,150 @@
+﻿@model eCommerce.Models.Home.HomeIndexViewModel
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*Carrusel*@
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+    @*# Slides*@
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="~/Images/S1.jpg" alt="First slide">
+            <div class="carousel-caption">
+           
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="~/Images/S2.jpg" alt="Second slide">
+            <div class="carousel-caption">
+  
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:320px;width:100%" src="~/Images/S3.jpg" alt="Third slide">
+            <div class="carousel-caption">
+ 
+            </div>
+        </div>
+    </div>
+    @*Botones laterales*@
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+</div>
+
+@*Busqueda*@
+<div class="olContent f1">
+    <h2 style="color:white">Buscar Producto o Categoria</h2>
+</div>
+<form method="post">
+    <div class="olSearch fr">
+        <input type="text" name="search" placeholder="Ingresar letra o palabra" class="inputComn houseText form-control" />
+        <div class="searchIcon">
+            <button type="button" class="searchBtn">
+                <img style="width:20px;" src="~/Images/Search.png" alt="Alternate Text" />
+
+            </button>
+        </div>
+    </div>
+</form>
+
+@*Productos*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            @*Encabezado*@
+            <h2>Productos <small>/ Tendencia</small></h2>
+        </div>
+    </div>
+</div>
+<div class="row product-container">
+    @foreach (var product in Model.listOfProduct)
+    {
+        <div class="clo-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" title="Click to View product detail" style="cursor:pointer; height:160px;width:100%" src="~/ProductImg/@product.PRODUCT_IMAGE" alt="Alternate Text" />
+
+                <div class="caption">
+                    <h5>@product.PRODUCT_NAME</h5>
+                    <p>@product.PRICE </p>
+                    <p>
+                        @if (product.QUANTITY > 0)
+                        {
+                            using (Html.BeginForm("AddToCart","Home", new { productID = product.PRODUCT_ID}))
+                            {
+                                <button class="pull-right" type="submit"><i class="fa-solid"></i></button>
+                            }
+                        @*<a class="pull-right" href="#"><i class="fa fa-solid fa-cart fa-cart-shopping">1</i></a>*@
+                        <p>Available</p>
+                    }
+                    else
+                    {
+                        <p>Not Available</p>
+                    }
+                        </p>
+                        <div class="product-item-badge">
+                            @if (product.IS_FEATURED == true)
+                            {
+                                <p>Nuevo</p>
+                            }
+                            else
+                            {
+                                <p>Antiguo</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    @*<div class="clo-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="thumbnail product-item" style="height:300px">
+                <img class="img-responsive" title="Click to View product detail" style="cursor:pointer; height:160px;width:100%" src="~/Images/Logo.jpg" alt="Alternate Text" />
+
+                <div class="caption">
+                    <h5>Product Name</h5>
+                    <p>$500.00 </p>
+                    <p>Available</p>
+                    <div class="product-item-price">
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</div>
+<div class="container">
+<br />
+    @Html.PagedListPager(Model.listOfProduct, page => Url.Action("Index", new
+    {
+        page,
+        searchBy = Request.QueryString["searchBy"],
+        search = Request.QueryString["search"]
+    }))
+
+</div>
+@*<div class="container">
+    <br />
+    @Html.PagedListPager(Model.listOfProduct, page => Url.Action("Index", new
+    {
+        page,
+        searchBy = Request.QueryString["searchBy"],
+        search = Request.QueryString["search"]
+    }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
+
+</div>*@

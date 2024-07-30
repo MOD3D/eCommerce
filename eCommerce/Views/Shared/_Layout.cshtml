@@ -1,0 +1,91 @@
+﻿ @using eCommerce.Models.Home;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title MOD.3D</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="https:/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/MyMainLayOut.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body class="bodyMain">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="logo">
+                    <div class="logoDiv">
+                        <img class="izquierda" src="~/Images/Logo.jpg">
+                        <div class="derecha">
+                            <h1><a style="color:white" href="~/Home/Index">MOD.<span>3D</span></a></h1>
+                            <p>Materializa tus ideas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compras <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (Session["cart"] != null)
+            {
+
+                            foreach (var Item in (List<Item>)Session["cart"])
+            {
+                            <li>
+                            <a href="@Url.Action("RemoveFromCart","Home",new { productID = Item.Product.PRODUCT_ID })">@Item.Product.PRODUCT_NAME (@Item.Quantity) <i class="pull-right">x</i></a>
+                            </li>
+            } 
+            }
+                            <li class="divider"></li>
+                            <li><a href="~/Home/Checkout">Verificar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="nav-menus">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a style="border-radius:initial" href="~/Home/Index">Inicio</a></li>
+                            <li><a style="border-radius:initial" href="~/Home/Products">Productos</a></li>
+                            <li><a style="border-radius:initial" href="~/Home/About"> Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-md-12 copyright">
+                    <div class="col-md-6 col-sm-5 copyright-left">
+                        <p>&copy; @DateTime.Now.Year - MOD.3D. All rigth reserved.</p>
+                    </div>
+
+                    <div class="col-md-6 col-sm-5 copyright-right">
+                        <ul class="list-unstyled list-social">
+                            <li><a href="#" target="_blank"<i class="fa fa-facebook-square"></i></a></li>
+                            <li><a href="#" target="_blank"<i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"<i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

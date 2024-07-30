@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64145030d4ef482a978fb31bebb61d6a" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_CART" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_CART_STATUS" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_CATEGORY" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_MEMBER_ROLE" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_MEMBERS" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_PRODUCT" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_ROLES" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_SHIPPING_DETAILS" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_ECOMMERCEModel.TB_SLIDE_IMAGE" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="DB_ECOMMERCEModel.FK__TB_CART__PRODUCT__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ECOMMERCEModel.FK__TB_PRODUC__CATEG__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_ECOMMERCEModel.FK__TB_SHIPPI__PAYME__5629CD9C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

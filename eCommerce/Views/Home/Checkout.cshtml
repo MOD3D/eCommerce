@@ -1,0 +1,47 @@
+﻿@using eCommerce.Models.Home;
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+@if (Session["cart"] == null)
+{
+
+
+    <div class=" alert alert-danger">
+        <strong>No product addred to cart!</strong>
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Add</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Item product in (List<Item>)Session["cart"])
+            {
+                <tr>
+                    <td>@product.Product.PRODUCT_NAME</td>
+                    <td>@product.Quantity</td>
+                    <td>
+                        <a href="@Url.Action("AddToCart", "Home", new {productID = product.Product.PRODUCT_ID,url="Cheackout"})">
+                            <i class="">+</i>
+                        </a>
+                        <a href="@Url.Action("DecreaseQty", "Home", new {productID = product.Product.PRODUCT_ID})">
+                            <i class="">-</i>
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="@Url.Action("CheckoutDetails", "Home")">Checkout</a>
+}
+
