@@ -1,4 +1,4 @@
-﻿ @using eCommerce.Models.Home;
+﻿@using eCommerce.Models.Home;
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,15 +35,15 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Compras <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @if (Session["cart"] != null)
-            {
+                            {
 
-                            foreach (var Item in (List<Item>)Session["cart"])
-            {
-                            <li>
-                            <a href="@Url.Action("RemoveFromCart","Home",new { productID = Item.Product.PRODUCT_ID })">@Item.Product.PRODUCT_NAME (@Item.Quantity) <i class="pull-right">x</i></a>
-                            </li>
-            } 
-            }
+                                foreach (var Item in (List<Item>)Session["cart"])
+                                {
+                                    <li>
+                                        <a href="@Url.Action("RemoveFromCart","Home",new { productID = Item.Product.PRODUCT_ID })">@Item.Product.PRODUCT_NAME (@Item.Quantity) <i class="pull-right">x</i></a>
+                                    </li>
+                                }
+                            }
                             <li class="divider"></li>
                             <li><a href="~/Home/Checkout">Verificar</a></li>
                         </ul>

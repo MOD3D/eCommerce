@@ -127,7 +127,6 @@ namespace eCommerce.Controllers
             {
                 return RedirectToAction("Error");
             }
-
             var product = _unitOfWork.GetRepositoryInstance<TB_PRODUCT>().GetFirstorDefault(recordID.Value);
             if (product == null)
             {

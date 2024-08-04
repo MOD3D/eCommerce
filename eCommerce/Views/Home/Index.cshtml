@@ -52,11 +52,11 @@
     <h2 style="color:white">Buscar Producto o Categoria</h2>
 </div>
 <form method="post">
-    <div class="olSearch fr">
-        <input type="text" name="search" placeholder="Ingresar letra o palabra" class="inputComn houseText form-control" />
+    <div class="olSearch fr" style="height:20px;width:20%">
+        <input style="height:44px" type="text" name="search" placeholder="Ingresar letra o palabra" class="inputComn houseText form-control" />
         <div class="searchIcon">
             <button type="button" class="searchBtn">
-                <img style="width:20px;" src="~/Images/Search.png" alt="Alternate Text" />
+                <img style="width:20px" src="~/Images/Search.png" alt="Alternate Text" />
 
             </button>
         </div>
@@ -77,25 +77,27 @@
     @foreach (var product in Model.listOfProduct)
     {
         <div class="clo-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
-            <div class="thumbnail product-item" style="height:300px">
+            <div class="thumbnail product-item" style="height:280px">
                 <img class="img-responsive" title="Click to View product detail" style="cursor:pointer; height:160px;width:100%" src="~/ProductImg/@product.PRODUCT_IMAGE" alt="Alternate Text" />
 
                 <div class="caption">
-                    <h5>@product.PRODUCT_NAME</h5>
-                    <p>@product.PRICE </p>
+                    <h6 style="font-weight:bold">@product.PRODUCT_NAME</h6>
+                    <h6>@product.PRICE </h6>
                     <p>
                         @if (product.QUANTITY > 0)
                         {
-                            using (Html.BeginForm("AddToCart","Home", new { productID = product.PRODUCT_ID}))
+                            using (Html.BeginForm("AddToCart", "Home", new { productID = product.PRODUCT_ID }))
                             {
-                                <button class="pull-right" type="submit"><i class="fa-solid"></i></button>
+                                <button class="pull-right btn btn-success" type="submit"><i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg></i></button>  
                             }
-                        @*<a class="pull-right" href="#"><i class="fa fa-solid fa-cart fa-cart-shopping">1</i></a>*@
-                        <p>Available</p>
+                            @*<a class="pull-right" href="#"><i class="fa fa-solid fa-cart fa-cart-shopping">1</i></a>*@
+                    <h6 style="font-weight:initial">Disponible</h6>
                     }
                     else
                     {
-                        <p>Not Available</p>
+                        <p>No Disponible</p>
                     }
                         </p>
                         <div class="product-item-badge">
@@ -112,21 +114,6 @@
                 </div>
             </div>
         }
-
-    @*<div class="clo-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
-            <div class="thumbnail product-item" style="height:300px">
-                <img class="img-responsive" title="Click to View product detail" style="cursor:pointer; height:160px;width:100%" src="~/Images/Logo.jpg" alt="Alternate Text" />
-
-                <div class="caption">
-                    <h5>Product Name</h5>
-                    <p>$500.00 </p>
-                    <p>Available</p>
-                    <div class="product-item-price">
-
-                    </div>
-                </div>
-            </div>
-        </div>*@
 </div>
 <div class="container">
 <br />
@@ -138,13 +125,4 @@
     }))
 
 </div>
-@*<div class="container">
-    <br />
-    @Html.PagedListPager(Model.listOfProduct, page => Url.Action("Index", new
-    {
-        page,
-        searchBy = Request.QueryString["searchBy"],
-        search = Request.QueryString["search"]
-    }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
-
-</div>*@
+@*new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })*@

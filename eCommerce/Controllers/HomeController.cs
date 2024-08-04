@@ -15,7 +15,7 @@ namespace eCommerce.Controllers
         public ActionResult Index(string search, int? page)
         {
             HomeIndexViewModel viewModel = new HomeIndexViewModel();
-            return View(viewModel.CreateModel(search, 4, page));
+            return View(viewModel.CreateModel(search, 12, page));
         }
         public ActionResult AddtoCart(int productID, string url)
         {
@@ -149,7 +149,7 @@ namespace eCommerce.Controllers
         }
         public ActionResult About()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Cotizaziones";
 
             return View();
         }
